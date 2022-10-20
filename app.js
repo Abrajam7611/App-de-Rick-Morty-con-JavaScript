@@ -9,18 +9,18 @@ const loadData = (url, page = 1) => {
         const personajes = respJson.results;
         console.log(info.next);
         console.log(info.prev);
-        creaButtons();
+      //  creaButtons();
         if(!info.prev){
             document.querySelector('#prev').classList.add('disabled')
         } else {
             document.querySelector('#prev').classList.remove('disabled')
-           // document.querySelector('#prev').setAttribute('data-id', page - 1)
+            document.querySelector('#prev').setAttribute('data-id', page - 1)
         }
         if(!info.next){
             document.querySelector('#next').classList.add('disabled')
         } else {
             document.querySelector('#next').classList.remove('disabled')
-            //document.querySelector('#next').setAttribute('data-id', page + 1)
+            document.querySelector('#next').setAttribute('data-id', page + 1)
         }
         console.log(personajes);
         showCharacters(personajes);
@@ -65,23 +65,19 @@ const creaCard = (personaje) => {
   return card;
 }
 
-/*<button id="prev" class="btn btn-success btn-lg" data-id="">Anterior</button>
-<button id="next" class="btn btn-success btn-lg" data-id="">Siguiente</button>
-</div>*/
-
+//<button id="prev" class="btn btn-success btn-lg" data-id="">Anterior</button>
+//<button id="next" class="btn btn-success btn-lg" data-id="">Siguiente</button>
 const creaButtons = () => {
-    const contenedorButtons = document.querySelector('.botones');
-    while(contenedorButtons.firstChild){
-        contenedorButtons.remove(contenedorButtons.firstChild);
-    }
+    const contenedorButtons = document.querySelector('#botones');
+    contenedorButtons.innerText = '';
     const btnPrev = document.createElement('button');
     btnPrev.id = 'prev';
-    btnPrev.className = 'btn bin-success btn-lg';
+    btnPrev.className = 'btn btn-success btn-lg mx-3';
     btnPrev.innerText = 'Anterior';
     contenedorButtons.appendChild(btnPrev);
-    const btnNex = document.createElement('button');
-    btnNex.id = 'nex';
-    btnNext.className = 'btn btn-success btn-lg';
+    const btnNext = document.createElement('button');
+    btnNext.id = 'next';
+    btnNext.className = 'btn btn-success btn-lg mx-3';
     btnNext.innerText = 'Siguiente';
     contenedorButtons.appendChild(btnNext);
 }
